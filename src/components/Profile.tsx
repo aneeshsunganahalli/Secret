@@ -1,11 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
-const Placeholder: React.FC = () => {
+const ProfileImage: React.FC = () => {
   return (
-    <div className="w-full h-full bg-gray-200 rounded-[11px] flex items-center justify-center">
-      <div className="text-gray-500 text-sm">Placeholder</div>
+    <div className="w-full h-full bg-gray-200 rounded-[11px] overflow-hidden">
+      <Image
+        src="/Profile1.jpeg"
+        alt="Profile"
+        width={152}
+        height={152}
+        className="w-full h-full object-cover"
+      />
     </div>
   );
 };
@@ -59,10 +66,10 @@ const ProfileArticle: React.FC<ProfileArticleProps> = ({
       {/* Header Section */}
       <div className="flex justify-between items-start">
         <div className="flex gap-x-[16px] items-start lg:text-sm lg:leading-[18.4px]">
-          {/* Placeholder Container */}
+          {/* Profile Image Container */}
           <div className="w-[120px] h-[120px] rounded-[11px] overflow-hidden lg:w-[152px] lg:h-[152px]">
             <div className="!h-full !w-full rounded-[11px]">
-              <Placeholder />
+              <ProfileImage />
             </div>
           </div>
         </div>

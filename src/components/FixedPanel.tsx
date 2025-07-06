@@ -1,4 +1,5 @@
 import React from 'react';
+import ImageGallery from './ImageGallery';
 
 interface FixedPanelProps {
   className?: string;
@@ -27,7 +28,7 @@ const FixedPanel: React.FC<FixedPanelProps> = ({ className = '' }) => {
         py-[6px] 
         px-[16px]
         w-full 
-        h-fit
+        min-h-fit
         flex
         flex-col
         gap-y-[16px]
@@ -43,21 +44,7 @@ const FixedPanel: React.FC<FixedPanelProps> = ({ className = '' }) => {
       
       {/* Images Section */}
       <div className="pb-[10px]">
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-          {/* Placeholder for images */}
-          <div className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center">
-            <span className="text-gray-500 text-sm">Image 1</span>
-          </div>
-          <div className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center">
-            <span className="text-gray-500 text-sm">Image 2</span>
-          </div>
-          <div className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center">
-            <span className="text-gray-500 text-sm">Image 3</span>
-          </div>
-          <div className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center">
-            <span className="text-gray-500 text-sm">Image 4</span>
-          </div>
-        </div>
+        <ImageGallery />
       </div>
     </div>
   );
