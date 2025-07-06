@@ -2,30 +2,6 @@
 
 import { useState, useEffect } from 'react';
 
-interface LanguageSelectorProps {
-  currentLang: string;
-  onLanguageChange: (lang: string) => void;
-}
-
-const LanguageSelector: React.FC<LanguageSelectorProps> = ({ currentLang, onLanguageChange }) => {
-  return (
-    <div className="flex gap-x-[8px]">
-      <span 
-        className={`cursor-pointer ${currentLang === 'EN' ? 'underline !opacity-100' : 'opacity-50 hover:underline'}`}
-        onClick={() => onLanguageChange('EN')}
-      >
-        EN
-      </span>
-      <span 
-        className={`cursor-pointer ${currentLang === 'CY' ? 'underline !opacity-100' : 'opacity-50 hover:underline'}`}
-        onClick={() => onLanguageChange('CY')}
-      >
-        CY
-      </span>
-    </div>
-  );
-};
-
 const Placeholder: React.FC = () => {
   return (
     <div className="w-full h-full bg-gray-200 rounded-[11px] flex items-center justify-center">
@@ -77,12 +53,6 @@ const ProfileArticle: React.FC<ProfileArticleProps> = ({
   description = "Lorem est studio creativum Aethel Jenkins, designatoris Cambrici cum experientia ultra 15 annos, inter officia Praefecti et Directoris. Proditiones et societates excultae per explorationem consiliorum et artis directionem, novas technologias amplectens ad fines creativos promovendum.",
   className = ""
 }) => {
-  const [currentLanguage, setCurrentLanguage] = useState<string>('EN');
-
-  const handleLanguageChange = (lang: string) => {
-    setCurrentLanguage(lang);
-    // Here you could implement actual language switching logic
-  };
 
   return (
     <article className={`rounded-xl p-[16px] bg-gray-50 w-full flex flex-col gap-y-[44px] lg:gap-y-[88px] ${className}`}>
@@ -95,12 +65,6 @@ const ProfileArticle: React.FC<ProfileArticleProps> = ({
               <Placeholder />
             </div>
           </div>
-          
-          {/* Language Selector */}
-          <LanguageSelector 
-            currentLang={currentLanguage} 
-            onLanguageChange={handleLanguageChange} 
-          />
         </div>
         
         {/* Clock */}
