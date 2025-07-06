@@ -31,12 +31,12 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
     { src: '/3.JPG', alt: 'Portfolio Image 3' },
     { src: '/2.JPG', alt: 'Portfolio Image 2' },
   ],
-  className = "bg-white rounded-xl p-2"
+  className = "bg-white rounded-xl p-4"
 }) => {
   return (
     <div className={className}>
       <div 
-        className="columns-2 md:columns-3 lg:columns-4 gap-2"
+        className="columns-2 gap-2"
         style={{ columnFill: 'balance' }}
       >        
         {images.map((image, index) => {
@@ -50,14 +50,18 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
             'aspect-[3/5]',   // Very tall portrait
           ];
           
-          const aspectClass = aspectVariants[index % aspectVariants.length];
+          // Make the first image (index 0) full width for hero effect
+          const isHeroImage = index === 0;
+          const aspectClass = isHeroImage 
+            ? 'aspect-[16/9]' 
+            : aspectVariants[index % aspectVariants.length];
           
           return (
             <div
               key={`${image.src}-${index}`}
-              className={`w-full mb-2 break-inside-avoid`}
+              className={`w-full mb-2 ${isHeroImage ? 'break-before-column break-after-column' : 'break-inside-avoid'}`}
             >
-              <div className={`w-full ${aspectClass} bg-gray-200 rounded-md overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.02] relative`}>
+              <div className={`w-full ${aspectClass} bg-gray-200 rounded-md overflow-hidden shadow-sm relative`}>
                 <Image
                   src={image.src}
                   alt={image.alt}
