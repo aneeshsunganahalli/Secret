@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import ContactSection from './ContactBar';
+import { motion } from 'framer-motion';
 
 const ProfileImage: React.FC = () => {
   return (
@@ -61,30 +63,91 @@ const ProfileArticle: React.FC<ProfileArticleProps> = ({
   className = ""
 }) => {
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.4, // Longer delay between animations
+        delayChildren: 0.2    // Initial delay before starting
+      }
+    }
+  };
+
+  const contactBarVariants = {
+    hidden: { 
+      x: 400, 
+      opacity: 0 
+    },
+    visible: { 
+      x: 0, 
+      opacity: 1,
+      transition: {
+        type: "spring" as const,
+        stiffness: 150,  // Lower stiffness for smoother movement
+        damping: 35,     // Higher damping for more fluid motion
+        duration: 1.4    // Longer duration
+      }
+    }
+  };
+
+  const infoVariants = {
+    hidden: { 
+      x: 400, 
+      opacity: 0 
+    },
+    visible: { 
+      x: 0, 
+      opacity: 1,
+      transition: {
+        type: "spring" as const,
+        stiffness: 150,  // Lower stiffness for smoother movement
+        damping: 35,     // Higher damping for more fluid motion
+        duration: 1.4    // Longer duration
+      }
+    }
+  };
+
   return (
-    <article className={`rounded-xl p-[16px] bg-gray-50 w-full flex flex-col gap-y-[44px] lg:gap-y-[88px] ${className}`}>
-      {/* Header Section */}
-      <div className="flex justify-between items-start">
-        <div className="flex gap-x-[16px] items-start lg:text-sm lg:leading-[18.4px]">
-          {/* Profile Image Container */}
-          <div className="w-[120px] h-[120px] rounded-[11px] overflow-hidden lg:w-[152px] lg:h-[152px]">
-            <div className="!h-full !w-full rounded-[11px]">
-              <ProfileImage />
+    <motion.div 
+      className={`flex flex-col gap-y-1 ${className}`}
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {/* Main Profile Article - Animates Second */}
+      <motion.article 
+        className="rounded-xl p-[16px] bg-gray-50 w-full flex flex-col gap-y-[44px] lg:gap-y-[88px]"
+        variants={infoVariants}
+      >
+        {/* Header Section */}
+        <div className="flex justify-between items-start">
+          <div className="flex gap-x-[16px] items-start lg:text-sm lg:leading-[18.4px]">
+            {/* Profile Image Container */}
+            <div className="w-[120px] h-[120px] rounded-[11px] overflow-hidden lg:w-[152px] lg:h-[152px]">
+              <div className="!h-full !w-full rounded-[11px]">
+                <ProfileImage />
+              </div>
             </div>
           </div>
+          
+          {/* Clock */}
+          <Clock />
         </div>
-        
-        {/* Clock */}
-        <Clock />
-      </div>
 
-      {/* Description Section */}
-      <div className="text-[16px] leading-[18px] max-w-[500px] lg:text-lg lg:leading-[23px]">
-        <p className="text-gray-900">
-          {description}
-        </p>
-      </div>
-    </article>
+        {/* Description Section */}
+        <div className="text-[16px] leading-[18px] max-w-[500px] lg:text-lg lg:leading-[23px]">
+          <p className="text-gray-900">
+            {description}
+          </p>
+        </div>
+      </motion.article>
+
+      {/* Contact Section - Animates First but positioned below */}
+      <motion.div variants={contactBarVariants}>
+        <ContactSection />
+      </motion.div>
+    </motion.div>
   );
 };
 

@@ -1,7 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-
 interface NavButtonProps {
   children: React.ReactNode;
   isActive?: boolean;
@@ -29,8 +27,12 @@ const NavButton: React.FC<NavButtonProps> = ({ children, isActive = false, class
   );
 };
 
-const Navbar: React.FC = () => {
-  const [activeSection, setActiveSection] = useState<string>('info');
+interface NavbarProps {
+  activeSection: 'info' | 'contact';
+  setActiveSection: (section: 'info' | 'contact') => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection }) => {
 
   return (
     <div className="font-normal py-[6px] pl-[16px] pr-[6px] flex items-center justify-between bg-gray-50 rounded-full h-fit relative z-[2]">
@@ -45,13 +47,6 @@ const Navbar: React.FC = () => {
           className="!bg-gray-300 hover:!bg-gray-400"
         >
           <span>Info</span>
-        </NavButton>
-        
-        <NavButton 
-          className="lg:hidden !bg-gray-300 hover:!bg-gray-400"
-          onClick={() => setActiveSection('playground')}
-        >
-          <span>Playground</span>
         </NavButton>
         
         <NavButton

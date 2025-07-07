@@ -18,18 +18,17 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
     { src: '/1.JPG', alt: 'Portfolio Image 1' },
     { src: '/2.JPG', alt: 'Portfolio Image 2' },
     { src: '/3.JPG', alt: 'Portfolio Image 3' },
-    { src: '/2.JPG', alt: 'Portfolio Image 2' },
-    { src: '/1.JPG', alt: 'Portfolio Image 1' },
-    { src: '/3.JPG', alt: 'Portfolio Image 3' },
-    { src: '/1.JPG', alt: 'Portfolio Image 1' },
-    { src: '/3.JPG', alt: 'Portfolio Image 3' },
-    { src: '/2.JPG', alt: 'Portfolio Image 2' },
-    { src: '/3.JPG', alt: 'Portfolio Image 3' },
-    { src: '/1.JPG', alt: 'Portfolio Image 1' },
-    { src: '/2.JPG', alt: 'Portfolio Image 2' },
-    { src: '/1.JPG', alt: 'Portfolio Image 1' },
-    { src: '/3.JPG', alt: 'Portfolio Image 3' },
-    { src: '/2.JPG', alt: 'Portfolio Image 2' },
+    { src: '/4.JPG', alt: 'Portfolio Image 4' },
+    { src: '/5.JPG', alt: 'Portfolio Image 5' },
+    { src: '/6.JPG', alt: 'Portfolio Image 6' },
+    { src: '/7.JPG', alt: 'Portfolio Image 7' },
+    { src: '/8.JPG', alt: 'Portfolio Image 8' },
+    { src: '/9.JPG', alt: 'Portfolio Image 9' },
+    { src: '/10.JPG', alt: 'Portfolio Image 10' },
+    { src: '/11.JPG', alt: 'Portfolio Image 11' },
+    { src: '/12.JPG', alt: 'Portfolio Image 12' },
+    { src: '/13.jpeg', alt: 'Portfolio Image 13' },
+    { src: '/14.jpeg', alt: 'Portfolio Image 14' },
   ],
   className = "bg-white rounded-xl p-4"
 }) => {
@@ -61,7 +60,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
               key={`${image.src}-${index}`}
               className={`w-full mb-2 ${isHeroImage ? 'break-before-column break-after-column' : 'break-inside-avoid'}`}
             >
-              <div className={`w-full ${aspectClass} bg-gray-200 rounded-md overflow-hidden shadow-sm relative`}>
+              <div className={`w-full ${aspectClass} bg-gray-200 rounded-xl overflow-hidden shadow-sm relative`}>
                 <Image
                   src={image.src}
                   alt={image.alt}
