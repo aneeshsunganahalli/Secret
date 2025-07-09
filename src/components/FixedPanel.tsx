@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import ImageGallery from './ImageGallery';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 interface FixedPanelProps {
   className?: string;
@@ -51,84 +59,65 @@ const ImageCarousel: React.FC = () => {
     { src: '/14.jpeg', alt: 'Portfolio Image 14' },
   ];
 
-  const nextImage = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const prevImage = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
-
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 300 : -300,
-      opacity: 0,
-      scale: 0.8,
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-      scale: 1,
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 300 : -300,
-      opacity: 0,
-      scale: 0.8,
-    }),
-  };
-
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center">
-      {/* Image Display */}
-      <div className="relative w-full flex-1 flex items-center justify-center overflow-hidden">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentIndex}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 },
-              scale: { duration: 0.2 },
-            }}
-            className="absolute inset-0 flex items-center justify-center"
-          >
-            <img
-              src={images[currentIndex].src}
-              alt={images[currentIndex].alt}
-              className="max-w-full max-h-full object-contain rounded-lg"
-            />
-          </motion.div>
-        </AnimatePresence>
+      {/* Swiper Carousel */}
+      <div className="w-full flex-1 flex items-center justify-center">
+        <Swiper
+          effect={'coverflow'}
+          grabCursor={true}
+          centeredSlides={true}
+          slidesPerView={1.2}
+          spaceBetween={-300}
+          speed={600}
+          coverflowEffect={{
+            rotate: 15,
+            stretch: 0,
+            depth: 400,
+            modifier: 1.8,
+            slideShadows: false,
+          }}
+          pagination={{
+            clickable: true,
+            dynamicBullets: true,
+            dynamicMainBullets: 3,
+          }}
+          navigation={true}
+          modules={[EffectCoverflow, Pagination, Navigation]}
+          className="w-full h-full swiper-container"
+          onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
+          loop={true}
+          loopAdditionalSlides={2}
+          style={{
+            '--swiper-navigation-color': '#ec4899',
+            '--swiper-pagination-color': '#ec4899',
+            '--swiper-navigation-size': '28px',
+          } as React.CSSProperties}
+        >
+          {images.map((image, index) => (
+            <SwiperSlide key={`${image.src}-${index}`}>
+              <div className="swiper-slide-content">
+                <div className="image-container">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="carousel-image"
+                    draggable={false}
+                  />
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
 
-      {/* Navigation Controls */}
-      <div className="flex items-center justify-center gap-4 mt-4">
-        <button
-          onClick={prevImage}
-          className="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors"
-        >
-          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        
-        <span className="text-gray-700 text-sm">
-          {currentIndex + 1} / {images.length}
-        </span>
-        
-        <button
-          onClick={nextImage}
-          className="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors"
-        >
-          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
+      {/* Clean Counter */}
+      <div className="flex items-center justify-center mt-6 mb-2">
+        <div className="bg-black/10 rounded-full px-4 py-2 backdrop-blur-sm">
+          <span className="text-gray-700 text-sm font-medium">
+            {currentIndex + 1} / {images.length}
+          </span>
+        </div>
       </div>
     </div>
   );
