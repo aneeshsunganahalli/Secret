@@ -73,39 +73,39 @@ const Contact: React.FC<ContactProps> = ({ className = '' }) => {
       {/* Main Contact Article - Renders after short delay for better performance */}
       {showMainContent && (
         <motion.div 
-          className="bg-gradient-to-br from-white via-pink-50/50 to-pink-100/30 rounded-xl p-6 shadow-lg border border-pink-200/50"
+          className="bg-[#F0EAD6] rounded-xl p-6"
           variants={infoVariants}
         >
           <div className="space-y-6">
             {/* Header */}
             <div className="space-y-2">
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-gray-800 to-[#F77FBE] bg-clip-text text-transparent">Get In Touch</h2>
-              <p className="text-gray-600">Let's work together on your next project</p>
+              <h2 className="text-2xl font-bold text-pink-500">Get In Touch</h2>
+              <p className="text-gray-700">Let's work together on your next project</p>
             </div>
 
             {/* Contact Info */}
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-[#F77FBE] rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center">
                   <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
                 <div>
-                  <p className="font-medium text-gray-200">Email</p>
-                  <p className="text-gray-400">hello@example.com</p>
+                  <p className="font-medium text-pink-600">Email</p>
+                  <p className="text-gray-600">hello@example.com</p>
                 </div>
               </div>
 
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-[#F77FBE] rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center">
                   <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
                 <div>
-                  <p className="font-medium text-gray-200">Phone</p>
-                  <p className="text-gray-400">+1 (555) 123-4567</p>
+                  <p className="font-medium text-pink-600">Phone</p>
+                  <p className="text-gray-600">+1 (555) 123-4567</p>
                 </div>
               </div>
 

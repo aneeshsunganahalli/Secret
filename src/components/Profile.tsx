@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 
 const ProfileImage: React.FC = () => {
   return (
-    <div className="w-full h-full bg-gray-200 rounded-[11px] overflow-hidden">
+    <div className="w-full h-full bg-[#E6D3B4] rounded-[11px] overflow-hidden">
       <Image
         src="/Profile1.jpeg"
         alt="Profile"
@@ -45,7 +45,7 @@ const Clock: React.FC<ClockProps> = ({ className = '' }) => {
   }, []);
 
   return (
-    <span className={`font-medium bg-gradient-to-r from-[#F77FBE] to-[#F77FBE]/80 bg-clip-text text-transparent ${className}`}>
+    <span className={`font-medium text-pink-400 ${className}`}>
       {time}
     </span>
   );
@@ -117,7 +117,7 @@ const ProfileArticle: React.FC<ProfileArticleProps> = ({
     >
       {/* Main Profile Article - Animates Second */}
       <motion.article 
-        className="rounded-xl p-[16px] bg-gradient-to-br from-white via-pink-50/50 to-pink-100/30 w-full flex flex-col gap-y-[44px] lg:gap-y-[88px] shadow-lg border border-pink-200/50"
+        className="rounded-xl p-[16px] bg-[#F0EAD6] w-full flex flex-col gap-y-[44px] lg:gap-y-[88px]"
         variants={infoVariants}
       >
         {/* Header Section */}

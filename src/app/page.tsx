@@ -51,14 +51,14 @@ export default function Home() {
   };
 
   return (
-    <div className="lg:flex lg:h-screen bg-gradient-to-br from-pink-50 via-white to-pink-100/40">
+    <div className="lg:flex lg:h-screen bg-black">
       {/* Left 2/5 - Navbar and Profile/Contact */}
-      <div className="w-full lg:w-[30.5vw] lg:min-w-[30.5vw] lg:max-w-[30.5vw] lg:flex-shrink-0 lg:overflow-y-auto">
+      <div className="w-full lg:w-[30.5vw] lg:min-w-[30.5vw] lg:max-w-[30.5vw] lg:flex-shrink-0 lg:overflow-y-auto bg-black">
         <div className="space-y-1 lg:p-4 lg:pt-6 lg:pr-3">
           <Navbar activeSection={activeSection} setActiveSection={handleSectionChange} />
           
           {/* Animated Content Container */}
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-hidden rounded-xl">
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={page}
@@ -103,7 +103,7 @@ export default function Home() {
       </div>
       
       {/* Right 3/5 - Fixed Panel (hidden on mobile) */}
-      <div className="hidden lg:block lg:w-[69.5vw] lg:min-w-[69.5vw] lg:max-w-[69.5vw] lg:flex-shrink-0 lg:relative lg:pt-6 lg:pr-6 lg:overflow-y-auto">
+      <div className="hidden lg:block lg:w-[69.5vw] lg:min-w-[69.5vw] lg:max-w-[69.5vw] lg:flex-shrink-0 lg:relative lg:pt-6 lg:pr-6 lg:overflow-y-auto bg-black">
         <FixedPanel />
       </div>
     </div>
