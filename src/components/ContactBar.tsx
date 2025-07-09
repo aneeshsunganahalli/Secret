@@ -36,10 +36,10 @@ const ContactSection: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-50 rounded-3xl p-4 flex justify-between items-center h-fit relative z-[2] transform translate-x-0">
+    <div className="bg-gradient-to-r from-white via-pink-50/60 to-pink-100/40 rounded-3xl p-4 flex justify-between items-center h-fit relative z-[2] transform translate-x-0 border border-pink-200/50">
       <button 
         onClick={copyToClipboard}
-        className="flex text-gray-600 font-normal gap-x-2 items-center py-1.5 pl-3 pr-2 rounded-full border border-gray-300 group hover:bg-gray-300/10 hover:text-gray-800 transition-colors duration-100 w-[167px] justify-between"
+        className="flex text-gray-700 font-normal gap-x-2 items-center py-1.5 pl-3 pr-2 rounded-full border border-pink-200/60 group hover:bg-[#F77FBE]/20 hover:text-[#F77FBE] hover:border-[#F77FBE]/50 transition-all duration-200 w-[167px] justify-between"
       >
         <span>contact@jkane.co</span>
         <svg 
@@ -48,7 +48,7 @@ const ContactSection: React.FC = () => {
           viewBox="0 0 20 20" 
           fill="none" 
           xmlns="http://www.w3.org/2000/svg"
-          className="group-hover:stroke-gray-800 transition-all duration-100"
+          className="group-hover:stroke-[#F77FBE] transition-all duration-200"
         >
           <path 
             d="M12.5 3.125H15.625C15.7908 3.125 15.9497 3.19085 16.0669 3.30806C16.1842 3.42527 16.25 3.58424 16.25 3.75V16.875C16.25 17.0408 16.1842 17.1997 16.0669 17.3169C15.9497 17.4342 15.7908 17.5 15.625 17.5H4.375C4.20924 17.5 4.05027 17.4342 3.93306 17.3169C3.81585 17.1997 3.75 17.0408 3.75 16.875V3.75C3.75 3.58424 3.81585 3.42527 3.93306 3.30806C4.05027 3.19085 4.20924 3.125 4.375 3.125H7.5" 
@@ -72,7 +72,7 @@ const ContactSection: React.FC = () => {
             target="_blank"
             rel="noreferrer"
             href={link.href}
-            className="flex items-center justify-center w-8 h-8 rounded-full border border-gray-200 group hover:bg-gray-100 hover:border-gray-300 transition-colors duration-200"
+            className="flex items-center justify-center w-8 h-8 rounded-full border border-pink-200/60 group hover:bg-[#F77FBE]/20 hover:border-[#F77FBE]/50 transition-all duration-200"
           >
             <Image
               src={link.icon}

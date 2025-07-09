@@ -11,29 +11,36 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState<'info' | 'contact'>('info');
   const [isAnimating, setIsAnimating] = useState(false);
 
+  const [[page, direction], setPage] = useState([activeSection, 0]);
+
   const handleSectionChange = (newSection: 'info' | 'contact') => {
     if (isAnimating || newSection === activeSection) return;
     
+    const newDirection = newSection === 'contact' ? 1 : -1;
+    setPage([newSection, newDirection]);
     setActiveSection(newSection);
   };
 
   const slideVariants = {
     enter: (direction: number) => {
       return {
-        x: direction > 0 ? 1000 : -1000,
-        opacity: 0
+        x: direction > 0 ? 300 : -300,
+        opacity: 0,
+        scale: 0.95
       };
     },
     center: {
       zIndex: 1,
       x: 0,
-      opacity: 1
+      opacity: 1,
+      scale: 1
     },
     exit: (direction: number) => {
       return {
         zIndex: 0,
-        x: direction < 0 ? 1000 : -1000,
-        opacity: 0
+        x: direction < 0 ? 300 : -300,
+        opacity: 0,
+        scale: 0.95
       };
     }
   };
@@ -44,7 +51,7 @@ export default function Home() {
   };
 
   return (
-    <div className="lg:flex lg:h-screen">
+    <div className="lg:flex lg:h-screen bg-gradient-to-br from-pink-50 via-white to-pink-100/40">
       {/* Left 2/5 - Navbar and Profile/Contact */}
       <div className="w-full lg:w-[30.5vw] lg:min-w-[30.5vw] lg:max-w-[30.5vw] lg:flex-shrink-0 lg:overflow-y-auto">
         <div className="space-y-1 lg:p-4 lg:pt-6 lg:pr-3">
@@ -52,10 +59,10 @@ export default function Home() {
           
           {/* Animated Content Container */}
           <div className="relative overflow-hidden">
-            <AnimatePresence mode="wait" custom={activeSection === 'contact' ? 1 : -1}>
+            <AnimatePresence mode="wait" custom={direction}>
               <motion.div
-                key={activeSection}
-                custom={activeSection === 'contact' ? 1 : -1}
+                key={page}
+                custom={direction}
                 variants={slideVariants}
                 initial="enter"
                 animate="center"
@@ -63,19 +70,11 @@ export default function Home() {
                 onAnimationStart={() => setIsAnimating(true)}
                 onAnimationComplete={() => setIsAnimating(false)}
                 transition={{
-                  x: { 
-                    type: "spring", 
-                    stiffness: 500, 
-                    damping: 40,
-                    delay: 0.05,
-                    restSpeed: 0.01,
-                    restDelta: 0.01,
-                    duration: 0.4
-                  },
-                  opacity: { 
-                    duration: 0.4,
-                    delay: 0.05 
-                  }
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 30,
+                  mass: 0.8,
+                  duration: 0.6
                 }}
                 style={{ 
                   position: 'relative',
@@ -83,18 +82,20 @@ export default function Home() {
                 }}
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={1}
+                dragElastic={0.2}
                 onDragEnd={(e, { offset, velocity }) => {
                   const swipe = swipePower(offset.x, velocity.x);
 
                   if (swipe < -swipeConfidenceThreshold) {
-                    setActiveSection(activeSection === 'info' ? 'contact' : 'info');
+                    // Swiping left: go to contact
+                    handleSectionChange('contact');
                   } else if (swipe > swipeConfidenceThreshold) {
-                    setActiveSection(activeSection === 'contact' ? 'info' : 'contact');
+                    // Swiping right: go to info
+                    handleSectionChange('info');
                   }
                 }}
               >
-                {activeSection === 'info' ? <ProfileArticle /> : <Contact />}
+                {page === 'info' ? <ProfileArticle /> : <Contact />}
               </motion.div>
             </AnimatePresence>
           </div>

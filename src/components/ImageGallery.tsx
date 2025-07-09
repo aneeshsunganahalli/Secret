@@ -30,7 +30,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
     { src: '/13.jpeg', alt: 'Portfolio Image 13' },
     { src: '/14.jpeg', alt: 'Portfolio Image 14' },
   ],
-  className = "bg-white rounded-xl p-4"
+  className = "bg-slate-900 rounded-xl p-4"
 }) => {
   return (
     <div className={className}>
@@ -58,9 +58,9 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
           return (
             <div
               key={`${image.src}-${index}`}
-              className={`w-full mb-2 ${isHeroImage ? 'break-before-column break-after-column' : 'break-inside-avoid'}`}
+              className={`w-full mb-2 ${isHeroImage ? 'break-before-column break-after-column' : 'break-inside-avoid'} cursor-pointer`}
             >
-              <div className={`w-full ${aspectClass} bg-gray-200 rounded-xl overflow-hidden shadow-sm relative`}>
+              <div className={`w-full ${aspectClass} bg-slate-800 rounded-xl overflow-hidden shadow-lg relative`}>
                 <Image
                   src={image.src}
                   alt={image.alt}

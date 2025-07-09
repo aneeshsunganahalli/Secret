@@ -45,7 +45,7 @@ const Clock: React.FC<ClockProps> = ({ className = '' }) => {
   }, []);
 
   return (
-    <span className={`font-normal text-gray-900 ${className}`}>
+    <span className={`font-medium bg-gradient-to-r from-[#F77FBE] to-[#F77FBE]/80 bg-clip-text text-transparent ${className}`}>
       {time}
     </span>
   );
@@ -117,7 +117,7 @@ const ProfileArticle: React.FC<ProfileArticleProps> = ({
     >
       {/* Main Profile Article - Animates Second */}
       <motion.article 
-        className="rounded-xl p-[16px] bg-gray-50 w-full flex flex-col gap-y-[44px] lg:gap-y-[88px]"
+        className="rounded-xl p-[16px] bg-gradient-to-br from-white via-pink-50/50 to-pink-100/30 w-full flex flex-col gap-y-[44px] lg:gap-y-[88px] shadow-lg border border-pink-200/50"
         variants={infoVariants}
       >
         {/* Header Section */}
@@ -137,7 +137,7 @@ const ProfileArticle: React.FC<ProfileArticleProps> = ({
 
         {/* Description Section */}
         <div className="text-[16px] leading-[18px] max-w-[500px] lg:text-lg lg:leading-[23px]">
-          <p className="text-gray-900">
+          <p className="text-gray-700">
             {description}
           </p>
         </div>
